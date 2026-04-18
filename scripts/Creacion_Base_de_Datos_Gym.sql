@@ -112,3 +112,89 @@ CREATE TABLE Rutina_Ejercicio (
         ON UPDATE CASCADE
 );
 
+-- =========================
+-- TABLA: Membresia 
+-- =========================
+
+CREATE TABLE Membresia (
+    id_membresia INT AUTO_INCREMENT PRIMARY KEY,
+    id_socio INT,
+    fecha_inicio DATE,
+    fecha_fin DATE,
+    estado ENUM('ACTIVA','VENCIDA'),
+    FOREIGN KEY (id_socio) REFERENCES Socio(id_socio)
+);
+
+-- =========================
+-- TABLA: Plan 
+-- =========================
+
+CREATE TABLE Plan (
+    id_plan INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    precio DECIMAL(10,2)
+);
+
+-- =========================
+-- TABLA: Pago_Detalle 
+-- =========================
+
+CREATE TABLE Pago_Detalle (
+    id_detalle INT AUTO_INCREMENT PRIMARY KEY,
+    id_pago INT,
+    id_plan INT,
+    FOREIGN KEY (id_pago) REFERENCES Pago(id_pago),
+    FOREIGN KEY (id_plan) REFERENCES Plan(id_plan)
+);
+
+-- =========================
+-- TABLA: Entrenador 
+-- =========================
+CREATE TABLE Entrenador (
+    id_entrenador INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50)
+);
+
+-- =========================
+-- TABLA: Rutina_entrenador_socio
+-- =========================
+CREATE TABLE Rutina_Entrenador (
+    id_rutina INT,
+    id_socio INT,
+    id_entrenador INT,
+    PRIMARY KEY (id_rutina, id_socio, id_entrenador),
+    FOREIGN KEY (id_rutina) REFERENCES Rutina(id_rutina),
+    FOREIGN KEY (id_socio) REFERENCES Socio(id_socio),
+    FOREIGN KEY (id_entrenador) REFERENCES Entrenador(id_entrenador)
+);
+
+-- =========================
+-- TABLA: Objetivo 
+-- =========================
+CREATE TABLE Objetivo (
+    id_objetivo INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(100)
+);
+
+-- =========================
+-- TABLA: Socio_Objetivo 
+-- =========================
+CREATE TABLE Socio_Objetivo (
+    id_socio INT,
+    id_objetivo INT,
+    PRIMARY KEY (id_socio, id_objetivo),
+    FOREIGN KEY (id_socio) REFERENCES Socio(id_socio),
+    FOREIGN KEY (id_objetivo) REFERENCES Objetivo(id_objetivo)
+);
+
+-- =========================
+-- TABLA: fact_pagos 
+-- =========================
+CREATE TABLE fact_pagos (
+    id_fact INT AUTO_INCREMENT PRIMARY KEY,
+    id_socio INT,
+    fecha_pago DATE,
+    monto DECIMAL(10,2),
+    periodo VARCHAR(20)
+);
