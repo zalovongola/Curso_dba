@@ -1,7 +1,9 @@
-Simulador Gym - Base de Datos
+Proyecto Final - Base de Datos Gimnasio
 
-Ejecutar primero Creacion_Base_de_Datos_Gym.sql.
+Este repositorio contiene:
+- Script de creación de la base de datos
+- Objetos (vistas, funciones, procedimientos, triggers)
+- Script de inserción de datos
+- Documentación del proyecto
 
-Ejecutar Objetos_Zavala.sql para habilitar la lógica.
-
-Ejecutar Inserts_Prueba_V2.sql para cargar los datos de testeo.
+Autor: Gonzalo Zavala
